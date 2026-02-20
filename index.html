@@ -50,5 +50,46 @@
   <h3>Sanji & Nami</h3>
 </footer>
 
-</body>
+<section id="countdown" style="text-align:center;padding:40px">
+  <h2>Menuju Hari Bahagia</h2>
+  <div id="timer" style="font-size:28px;font-weight:bold"></div>
+</section>
+
+<script>
+const weddingDate = new Date("2026-06-12T08:00:00").getTime();
+
+setInterval(function(){
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("timer").innerHTML =
+    days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
+},1000);
+</script><audio autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio><section style="text-align:center;padding:40px">
+  <h2>Lokasi Acara</h2>
+  <a href="https://maps.google.com" target="_blank">
+    <button style="padding:12px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+      Buka Google Maps
+    </button>
+  </a>
+</section><section style="text-align:center;padding:40px">
+  <h2>Galeri</h2>
+  <img src="https://picsum.photos/300/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/301/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/302/200" style="margin:10px;border-radius:10px">
+</section><section style="text-align:center;padding:40px">
+  <h2>Konfirmasi Kehadiran</h2>
+  <input type="text" placeholder="Nama" style="padding:10px;margin:5px"><br>
+  <input type="number" placeholder="Jumlah Tamu" style="padding:10px;margin:5px"><br>
+  <button style="padding:10px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+    Kirim
+  </button>
+</section></body>
 </html> 
