@@ -89,7 +89,14 @@ footer{
     <button id="openInvite">💌 Buka Undangan</button>
     <button id="btnMusic" style="display:none;">⏸️ Pause Musik</button>
   </div>
-</section>
+</section>.fade-out{
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut{
+  from{opacity:1;}
+  to{opacity:0; visibility:hidden;}
+}
 
 <!-- MEMPELAI -->
 <section class="section">
@@ -165,9 +172,23 @@ const openBtn = document.getElementById("openInvite");
 const musicBtn = document.getElementById("btnMusic");
 
 openBtn.addEventListener("click", () => {
+
+  // play musik
   music.play().then(() => {
     musicBtn.style.display = "inline-block";
   });
+
+  // animasi hilangkan cover
+  document.querySelector(".cover").classList.add("fade-out");
+
+  // scroll ke bawah setelah animasi
+  setTimeout(()=>{
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth"
+    });
+  },900);
+
 });
 
 musicBtn.addEventListener("click", () => {
