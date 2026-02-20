@@ -63,18 +63,46 @@ setInterval(function(){
   document.getElementById("timer").innerHTML =
     days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
 },1000);
-</script><audio id="bgm" loop>
+<!-- AUDIO -->
+<audio id="bgm" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
-<button onclick="playMusic()" style="margin-top:10px">
-  ▶️ Putar Musik
+<!-- TOMBOL BUKA UNDANGAN -->
+<button id="openInvite">
+  💌 Buka Undangan
+</button>
+
+<!-- TOMBOL KONTROL MUSIK -->
+<button id="btnMusic" style="margin-top:10px; display:none;">
+  ⏸️ Pause Musik
 </button>
 
 <script>
-function playMusic(){
-  document.getElementById("bgm").play();
-}
+const music = document.getElementById("bgm");
+const openBtn = document.getElementById("openInvite");
+const musicBtn = document.getElementById("btnMusic");
+
+// saat buka undangan → musik langsung play
+openBtn.addEventListener("click", () => {
+  music.play().then(() => {
+    musicBtn.style.display = "inline-block";
+  }).catch(err => {
+    console.log("Autoplay gagal:", err);
+  });
+});
+
+// tombol pause / play
+musicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.innerText = "⏸️ Pause Musik";
+  } else {
+    music.pause();
+    musicBtn.innerText = "▶️ Putar Musik";
+  }
+});
+</script>
 </script><section style="text-align:center;padding:40px">
   <h2>Lokasi Acara</h2>
   <a href="https://maps.google.com" target="_blank">
