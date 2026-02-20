@@ -63,7 +63,42 @@ setInterval(function(){
   document.getElementById("timer").innerHTML =
     days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
 },1000);
-<!-- AUDIO -->
+
+</script>
+</script><section style="text-align:center;padding:40px">
+  <h2>Lokasi Acara</h2>
+  <a href="https://maps.google.com" target="_blank">
+    <button style="padding:12px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+      Buka Google Maps
+    </button>
+  </a>
+</section><section style="text-align:center;padding:40px">
+  <h2>Galeri</h2>
+  <img src="https://picsum.photos/300/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/301/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/302/200" style="margin:10px;border-radius:10px">
+</section><section style="text-align:center;padding:40px">
+  <h2>Konfirmasi Kehadiran</h2>
+
+  <input id="nama" type="text" placeholder="Nama" style="padding:10px;margin:5px"><br>
+  <input id="jumlah" type="number" placeholder="Jumlah Tamu" style="padding:10px;margin:5px"><br>
+
+  <button onclick="kirimRSVP()" style="padding:10px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+    Kirim via WhatsApp
+  </button>
+</section>
+
+<script>
+function kirimRSVP(){
+  const nama = document.getElementById("nama").value;
+  const jumlah = document.getElementById("jumlah").value;
+
+  const pesan = `Halo, saya ${nama} akan hadir dengan ${jumlah} orang`;
+  const url = "https://wa.me/6281247770168?text=" + encodeURIComponent(pesan);
+
+  window.open(url, "_blank");
+}
+</script><!-- AUDIO -->
 <audio id="bgm" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
@@ -101,40 +136,5 @@ musicBtn.addEventListener("click", () => {
     music.pause();
     musicBtn.innerText = "▶️ Putar Musik";
   }
-});
-</script>
-</script><section style="text-align:center;padding:40px">
-  <h2>Lokasi Acara</h2>
-  <a href="https://maps.google.com" target="_blank">
-    <button style="padding:12px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
-      Buka Google Maps
-    </button>
-  </a>
-</section><section style="text-align:center;padding:40px">
-  <h2>Galeri</h2>
-  <img src="https://picsum.photos/300/200" style="margin:10px;border-radius:10px">
-  <img src="https://picsum.photos/301/200" style="margin:10px;border-radius:10px">
-  <img src="https://picsum.photos/302/200" style="margin:10px;border-radius:10px">
-</section><section style="text-align:center;padding:40px">
-  <h2>Konfirmasi Kehadiran</h2>
-
-  <input id="nama" type="text" placeholder="Nama" style="padding:10px;margin:5px"><br>
-  <input id="jumlah" type="number" placeholder="Jumlah Tamu" style="padding:10px;margin:5px"><br>
-
-  <button onclick="kirimRSVP()" style="padding:10px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
-    Kirim via WhatsApp
-  </button>
-</section>
-
-<script>
-function kirimRSVP(){
-  const nama = document.getElementById("nama").value;
-  const jumlah = document.getElementById("jumlah").value;
-
-  const pesan = `Halo, saya ${nama} akan hadir dengan ${jumlah} orang`;
-  const url = "https://wa.me/6281247770168?text=" + encodeURIComponent(pesan);
-
-  window.open(url, "_blank");
-}
-</script></body>
+});</body>
 </html> 
