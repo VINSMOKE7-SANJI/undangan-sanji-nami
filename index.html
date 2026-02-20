@@ -20,6 +20,24 @@ body{
   overflow:hidden;
 }
 
+/* ANIMASI FADE */
+.fade-out{
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut{
+  from{opacity:1;}
+  to{opacity:0; visibility:hidden;}
+}
+  </style>
+
+/* COVER VIDEO */
+.cover{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+}
+
 .cover iframe{
   position:absolute;
   top:50%;
