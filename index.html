@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invitation - Sanji & Nami</title>
-<link rel="stylesheet" href="styles.css">
 
 <style>
 body{
@@ -12,19 +11,42 @@ body{
   font-family:Arial, sans-serif;
   line-height:1.6;
 }
+
+/* COVER VIDEO */
+.cover{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  color:white;
+  text-align:center;
+}
+
+.cover iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  pointer-events:none;
+}
+
+.overlay{
+  position:relative;
+  z-index:2;
+  background:rgba(0,0,0,0.5);
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
 .section{
   padding:60px 20px;
   text-align:center;
 }
-.cover{
-  height:100vh;
-  background:#111;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
+
 button{
   padding:12px 20px;
   background:#c9a227;
@@ -37,61 +59,66 @@ button{
 </head>
 <body>
 
-<!-- COVER -->
+<!-- COVER VIDEO -->
 <section class="cover">
-  <div>
-    <h1>The Wedding Of ASLEN</h1>
-    <h2>Sanji & Nami</h2>
-    <p>12 Juni 2026</p>
-    <button id="openInvite">💌 Buka Undangan</button>
-    <br><br>
-    <button id="btnMusic" style="display:none">⏸️ Pause Musik</button>
-  </div>
+
+<iframe 
+src="https://www.youtube.com/embed/uGUMTxZX1Os?autoplay=1&mute=1&loop=1&playlist=uGUMTxZX1Os&controls=0&showinfo=0"
+frameborder="0"
+allow="autoplay; fullscreen">
+</iframe>
+
+<div class="overlay">
+  <h1>The Wedding Of ASLEN</h1>
+  <h2>Sanji & Nami</h2>
+  <p>5 Oktober 2026</p>
+  <button id="openInvite">💌 Buka Undangan</button>
+  <br><br>
+  <button id="btnMusic" style="display:none">⏸️ Pause Musik</button>
+</div>
+
 </section>
 
-<!-- AUDIO -->
+<!-- AUDIO BACKSOUND -->
 <audio id="bgm" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
-<!-- CONTENT -->
+<!-- MEMPELAI -->
 <section class="section">
   <h2>Mempelai</h2>
   <p><strong>Sanji</strong><br>Putra dari Bapak Judge & Ibu Sora</p>
   <p><strong>Nami</strong><br>Putri dari Bapak Kaido & Ibu Siti</p>
 </section>
 
+<!-- ACARA -->
 <section class="section">
   <h2>Acara</h2>
-  <p><strong>Akad:</strong> 12 Juni 2026 - 08.00 WIB</p>
-  <p><strong>Resepsi:</strong> 11.00 - 14.00 WIB</p>
-  <p>Gedung Graha Wedding</p>
+  <p><strong>Tanggal:</strong> 5 Oktober 2026</p>
+  <p><strong>Waktu:</strong> 11.00 WIB - Selesai</p>
 </section>
 
-<section id="countdown" class="section">
+<!-- COUNTDOWN -->
+<section class="section">
   <h2>Menuju Hari Bahagia</h2>
   <div id="timer" style="font-size:28px;font-weight:bold"></div>
 </section>
 
+<!-- LOKASI -->
 <section class="section">
   <h2>Lokasi Acara</h2>
-  <a href="https://maps.google.com" target="_blank">
+
+  <p>
+  100 meter ke Timur setelah GKJW Gumuk Kembar<br>
+  Jl. Tandean No 411<br>
+  Dusun Gumuk Kembar RT/RW 002/001<br>
+  Kel Sidorejo, Kec Umbulsari<br>
+  Jember, Jawa Timur
+  </p>
+
+  <a href="https://maps.app.goo.gl/gFcsA1bctJRQyMLE7" target="_blank">
     <button>Buka Google Maps</button>
   </a>
-</section>
-
-<section class="section">
-  <h2>Galeri</h2>
-  <img src="https://picsum.photos/300/200">
-  <img src="https://picsum.photos/301/200">
-  <img src="https://picsum.photos/302/200">
-</section>
-
-<section class="section">
-  <h2>Konfirmasi Kehadiran</h2>
-  <input id="nama" type="text" placeholder="Nama"><br><br>
-  <input id="jumlah" type="number" placeholder="Jumlah Tamu"><br><br>
-  <button onclick="kirimRSVP()">Kirim via WhatsApp</button>
 </section>
 
 <footer class="section">
@@ -100,29 +127,29 @@ button{
 </footer>
 
 <script>
-// MUSIC CONTROL
+// PLAY MUSIC saat buka undangan
 const music = document.getElementById("bgm");
 const openBtn = document.getElementById("openInvite");
 const musicBtn = document.getElementById("btnMusic");
 
 openBtn.addEventListener("click", () => {
   music.play();
-  musicBtn.style.display = "inline-block";
+  musicBtn.style.display="inline-block";
   window.scrollTo({top: window.innerHeight, behavior:"smooth"});
 });
 
 musicBtn.addEventListener("click", () => {
-  if (music.paused) {
+  if(music.paused){
     music.play();
-    musicBtn.innerText = "⏸️ Pause Musik";
-  } else {
+    musicBtn.innerText="⏸️ Pause Musik";
+  }else{
     music.pause();
-    musicBtn.innerText = "▶️ Putar Musik";
+    musicBtn.innerText="▶️ Putar Musik";
   }
 });
 
 // COUNTDOWN
-const weddingDate = new Date("2026-06-12T08:00:00").getTime();
+const weddingDate = new Date("2026-10-05T11:00:00").getTime();
 
 setInterval(()=>{
   const now = new Date().getTime();
@@ -136,15 +163,6 @@ setInterval(()=>{
   document.getElementById("timer").innerHTML =
     d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik";
 },1000);
-
-// RSVP
-function kirimRSVP(){
-  const nama = document.getElementById("nama").value;
-  const jumlah = document.getElementById("jumlah").value;
-  const pesan = `Halo, saya ${nama} akan hadir dengan ${jumlah} orang`;
-  const url = "https://wa.me/6281247770168?text=" + encodeURIComponent(pesan);
-  window.open(url, "_blank");
-}
 </script>
 
 </body>
