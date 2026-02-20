@@ -19,6 +19,46 @@
   </div>
 </section>
 
+  </script><!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio>
+
+<!-- TOMBOL BUKA UNDANGAN -->
+<button id="openInvite">
+  💌 Buka Undangan
+</button>
+
+<!-- TOMBOL KONTROL MUSIK -->
+<button id="btnMusic" style="margin-top:10px; display:none;">
+  ⏸️ Pause Musik
+</button>
+
+<script>
+const music = document.getElementById("bgm");
+const openBtn = document.getElementById("openInvite");
+const musicBtn = document.getElementById("btnMusic");
+
+// saat buka undangan → musik langsung play
+openBtn.addEventListener("click", () => {
+  music.play().then(() => {
+    musicBtn.style.display = "inline-block";
+  }).catch(err => {
+    console.log("Autoplay gagal:", err);
+  });
+});
+
+// tombol pause / play
+musicBtn.addEventListener("click", () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.innerText = "⏸️ Pause Musik";
+  } else {
+    music.pause();
+    musicBtn.innerText = "▶️ Putar Musik";
+  }
+});
+
 <section id="content" class="section">
   <h2>Mempelai</h2>
   <p><strong>Sanji</strong><br>Putra dari Bapak Judge & Ibu Sora</p>
@@ -97,44 +137,5 @@ function kirimRSVP(){
   const url = "https://wa.me/6281247770168?text=" + encodeURIComponent(pesan);
 
   window.open(url, "_blank");
-}
-</script><!-- AUDIO -->
-<audio id="bgm" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
-</audio>
-
-<!-- TOMBOL BUKA UNDANGAN -->
-<button id="openInvite">
-  💌 Buka Undangan
-</button>
-
-<!-- TOMBOL KONTROL MUSIK -->
-<button id="btnMusic" style="margin-top:10px; display:none;">
-  ⏸️ Pause Musik
-</button>
-
-<script>
-const music = document.getElementById("bgm");
-const openBtn = document.getElementById("openInvite");
-const musicBtn = document.getElementById("btnMusic");
-
-// saat buka undangan → musik langsung play
-openBtn.addEventListener("click", () => {
-  music.play().then(() => {
-    musicBtn.style.display = "inline-block";
-  }).catch(err => {
-    console.log("Autoplay gagal:", err);
-  });
-});
-
-// tombol pause / play
-musicBtn.addEventListener("click", () => {
-  if (music.paused) {
-    music.play();
-    musicBtn.innerText = "⏸️ Pause Musik";
-  } else {
-    music.pause();
-    musicBtn.innerText = "▶️ Putar Musik";
-  }
-});</body>
+}</body>
 </html> 
