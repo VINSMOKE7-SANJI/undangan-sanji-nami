@@ -2,245 +2,48 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Undangan Pernikahan ALFABER SIMANGUNSONG B.Acc & LENNY NOVA KURNIASARI B.Acc</title>
-
-<style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  color:#333;
-  scroll-behavior:smooth;
-}
-
-/* COVER VIDEO */
-.cover{
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
-
-.cover iframe{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:177.77vh;
-  height:100vh;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  text-align:center;
-  padding:20px;
-}
-
-.section{
-  padding:70px 20px;
-  text-align:center;
-  background:#f9f9f9;
-}
-
-button{
-  padding:12px 24px;
-  border:none;
-  border-radius:6px;
-  background:#c9a227;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-footer{
-  padding:40px;
-  text-align:center;
-}
-
-.fade-out{
-  animation: fadeOut 1s forwards;
-}
-
-@keyframes fadeOut{
-  from{opacity:1;}
-  to{opacity:0; visibility:hidden;}
-}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation - Sanji & Nami</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<!-- AUDIO -->
-<audio id="bgm" src="marryyou.mp3" loop></audio>
-
-<!-- COVER -->
-<div class="cover">
-  <iframe
-    src="https://www.youtube.com/embed/uGUMTxZX1Os?autoplay=1&mute=1&controls=0&loop=1&playlist=uGUMTxZX1Os"
-    frameborder="0"
-    allow="autoplay">
-  </iframe>
-
+<section class="cover">
   <div class="overlay">
-    <h1>The Wedding Of</h1>
+    <h1>The Wedding Of ASLEN</h1>
     <h2>Sanji & Nami</h2>
-    <p>5 Oktober 2026</p>
-    <button id="openInvite">Buka Undangan</button>
-    <button id="btnMusic" style="display:none;">⏸️ Pause Musik</button>
-  </div>
-</div>
+    <p>12 Juni 2026</p>
+    
+  </script><!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio>
 
-<!-- MEMPELAI -->
-<section class="section">
-  <h2>Mempelai</h2>
-  <p><strong>Sanji</strong><br>Putra dari Alm. Yos Simangunsong & Ibu Marlina</p>
-  <p><strong>Nami</strong><br>Putri dari Bapak Ady Subiantoro & Ibu Iin Murtyningtias</p>
-</section>
+<!-- TOMBOL BUKA UNDANGAN -->
+<button id="openInvite">
+  💌 Buka Undangan
+</button>
 
-<!-- ACARA -->
-<section class="section">
-  <h2>Acara</h2>
-  <p>5 Oktober 2026</p>
-  <p>Jam 11.00 WIB - Selesai</p>
-</section>
-
-<!-- COUNTDOWN -->
-<section class="section">
-  <h2>Menuju Hari Bahagia</h2>
-  <div id="timer" style="font-size:28px;font-weight:bold"></div>
-</section>
-
-<!-- MAP -->
-<section class="section">
-  <h2>Lokasi Acara</h2>
-  <p>
-  Jalan Tandean No 411<br>
-  Dusun Gumuk Kembar RT/RW 002/001<br>
-  Kel Sidorejo, Kec Umbulsari<br>
-  Jember, Jawa Timur<br>
-  100 meter ke Timur setelah GKJW Gumuk Kembar
-  </p>
-
-  <a href="https://maps.app.goo.gl/gFcsA1bctJRQyMLE7" target="_blank">
-    <button>Buka Google Maps</button>
-  </a>
-</section>
-
-<!-- GALERI -->
-<section class="section">
-  <h2>Galeri</h2>
-  <img src="https://picsum.photos/300/200" style="margin:10px;border-radius:10px">
-  <img src="https://picsum.photos/301/200" style="margin:10px;border-radius:10px">
-  <img src="https://picsum.photos/302/200" style="margin:10px;border-radius:10px">
-</section>
-
-<!-- RSVP -->
-<section class="section">
-  <h2>Konfirmasi Kehadiran</h2>
-  <input id="nama" type="text" placeholder="Nama" style="padding:10px;margin:5px"><br>
-  <input id="jumlah" type="number" placeholder="Jumlah Tamu" style="padding:10px;margin:5px"><br>
-  <button onclick="kirimRSVP()">Kirim via WhatsApp</button>
-</section>
-
-<footer>
-  <p>Terima kasih atas doa dan restunya</p>
-  <h3>Sanji & Nami</h3>
-</footer>
+<!-- TOMBOL KONTROL MUSIK -->
+<button id="btnMusic" style="margin-top:10px; display:none;">
+  ⏸️ Pause Musik
+</button>
 
 <script>
 const music = document.getElementById("bgm");
 const openBtn = document.getElementById("openInvite");
 const musicBtn = document.getElementById("btnMusic");
 
+// saat buka undangan → musik langsung play
 openBtn.addEventListener("click", () => {
-  music.play().then(()=> musicBtn.style.display="inline-block");
-  document.querySelector(".cover").classList.add("fade-out");
-  setTimeout(()=> window.scrollTo({top:window.innerHeight,behavior:"smooth"}),900);
-});
-
-musicBtn.addEventListener("click", () => {
-  if(music.paused){
-    music.play();
-    musicBtn.innerText="⏸️ Pause Musik";
-  }else{
-    music.pause();
-    musicBtn.innerText="▶️ Putar Musik";
-  }
-});
-
-const weddingDate = new Date("2026-10-05T11:00:00").getTime();
-
-setInterval(()=>{
-  const now = new Date().getTime();
-  const d = weddingDate-now;
-  const days=Math.floor(d/(1000*60*60*24));
-  const hours=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-  const minutes=Math.floor((d%(1000*60*60))/(1000*60));
-  const seconds=Math.floor((d%(1000*60))/1000);
-  document.getElementById("timer").innerHTML=
-    days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
-},1000);
-
-function kirimRSVP(){
-  const nama=document.getElementById("nama").value;
-  const jumlah=document.getElementById("jumlah").value;
-  const pesan=`Halo, saya ${nama} akan hadir dengan ${jumlah} orang`;
-  window.open("https://wa.me/6281247770168?text="+encodeURIComponent(pesan));
-}
-</script>
-
-</body>
-    </html>  <button onclick="kirimRSVP()">Kirim via WhatsApp</button>
-</section>
-
-<footer>
-  <p>Apa yang sudah dipersatukan Allah tidak boleh diceraikan manusia" (Matius 19:6, Markus 10:9). 
-
-1. Pernikahan sebagai Ketetapan Illahi: Pernikahan bukan sekadar kontrak sosial, melainkan pengikatan jiwa oleh Allah sendiri.
-
-2. Sifat Tak Terceraikan: Ikatan pernikahan dianggap abadi, berlaku sekali seumur hidup.
-
-3. Tujuan Pernikahan: Suami istri dipanggil untuk bersatu, saling mengasihi, dan tidak dipisahkan oleh alasan sepele.
-
- Terima kasih atas doa dan restunya</p>
-  <h3>Alfa & Lenny</h3>
-</footer>
-
-<script>
-/* PLAY MUSIK */
-const music = document.getElementById("bgm");
-const openBtn = document.getElementById("openInvite");
-const musicBtn = document.getElementById("btnMusic");
-
-openBtn.addEventListener("click", () => {
-
-  // play musik
   music.play().then(() => {
     musicBtn.style.display = "inline-block";
+  }).catch(err => {
+    console.log("Autoplay gagal:", err);
   });
-
-  // animasi hilangkan cover
-  document.querySelector(".cover").classList.add("fade-out");
-
-  // scroll ke bawah setelah animasi
-  setTimeout(()=>{
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth"
-    });
-  },900);
-
 });
 
+// tombol pause / play
 musicBtn.addEventListener("click", () => {
   if (music.paused) {
     music.play();
@@ -251,8 +54,37 @@ musicBtn.addEventListener("click", () => {
   }
 });
 
-/* COUNTDOWN */
-const weddingDate = new Date("2026-10-05T11:00:00").getTime();
+<section id="content" class="section">
+  <h2>Mempelai</h2>
+  <p><strong>Sanji</strong><br>Putra dari Bapak Judge & Ibu Sora</p>
+  <p><strong>Nami</strong><br>Putri dari Bapak Kaido & Ibu Siti</p>
+</section>
+
+<section class="section">
+  <h2>Acara</h2>
+  <p><strong>Akad:</strong> 12 Juni 2026 - 08.00 WIB</p>
+  <p><strong>Resepsi:</strong> 11.00 - 14.00 WIB</p>
+  <p>Gedung Graha Wedding</p>
+</section>
+
+<section class="section">
+  <h2>Amplop Digital</h2>
+  <p>BCA 123456789 a.n Andi Pratama</p>
+  <p>OVO / DANA 081247770168</p>
+</section>
+
+<footer>
+  <p>Terima kasih atas doa dan restunya</p>
+  <h3>Sanji & Nami</h3>
+</footer>
+
+<section id="countdown" style="text-align:center;padding:40px">
+  <h2>Menuju Hari Bahagia</h2>
+  <div id="timer" style="font-size:28px;font-weight:bold"></div>
+</section>
+
+<script>
+const weddingDate = new Date("2026-06-12T08:00:00").getTime();
 
 setInterval(function(){
   const now = new Date().getTime();
@@ -267,7 +99,31 @@ setInterval(function(){
     days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
 },1000);
 
-/* RSVP */
+</script>
+</script><section style="text-align:center;padding:40px">
+  <h2>Lokasi Acara</h2>
+  <a href="https://maps.google.com" target="_blank">
+    <button style="padding:12px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+      Buka Google Maps
+    </button>
+  </a>
+</section><section style="text-align:center;padding:40px">
+  <h2>Galeri</h2>
+  <img src="https://picsum.photos/300/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/301/200" style="margin:10px;border-radius:10px">
+  <img src="https://picsum.photos/302/200" style="margin:10px;border-radius:10px">
+</section><section style="text-align:center;padding:40px">
+  <h2>Konfirmasi Kehadiran</h2>
+
+  <input id="nama" type="text" placeholder="Nama" style="padding:10px;margin:5px"><br>
+  <input id="jumlah" type="number" placeholder="Jumlah Tamu" style="padding:10px;margin:5px"><br>
+
+  <button onclick="kirimRSVP()" style="padding:10px 20px;background:#c9a227;color:white;border:none;border-radius:6px">
+    Kirim via WhatsApp
+  </button>
+</section>
+
+<script>
 function kirimRSVP(){
   const nama = document.getElementById("nama").value;
   const jumlah = document.getElementById("jumlah").value;
@@ -276,8 +132,5 @@ function kirimRSVP(){
   const url = "https://wa.me/6281247770168?text=" + encodeURIComponent(pesan);
 
   window.open(url, "_blank");
-}
-</script>
-
-</body>
-</html>
+}</body>
+</html> 
