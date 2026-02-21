@@ -72,9 +72,16 @@ footer{
 <body>
 
 <!-- AUDIO -->
-<audio id="bgm" loop>
-  <source src="Bruno_Mars_-_Marry_You_(mp3.pm).mp3" type="audio/mpeg">
-</audio>
+<button onclick="playMusic()" class="music-btn">
+  ▶️ Putar Musik
+</button>
+
+<script>
+function playMusic() {
+  const audio = document.getElementById("bgm");
+  audio.play();
+}
+</script>
 
 <!-- COVER -->
 <section class="cover">
