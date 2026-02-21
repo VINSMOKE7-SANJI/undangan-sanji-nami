@@ -13,7 +13,7 @@ body{
   scroll-behavior:smooth;
 }
 
-/* COVER VIDEO */
+/* COVER */
 .cover{
   position:relative;
   height:100vh;
@@ -32,11 +32,8 @@ body{
 
 .overlay{
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:rgba(0,0,0,0.4);
+  inset:0;
+  background:rgba(0,0,0,0.45);
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -46,6 +43,7 @@ body{
   padding:20px;
 }
 
+/* SECTION */
 .section{
   padding:60px 20px;
   text-align:center;
@@ -63,41 +61,47 @@ button{
   margin-top:10px;
 }
 
-footer{
-  padding:40px;
-  text-align:center;
+/* FADE OUT COVER */
+.fade-out{
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut{
+  from{opacity:1;}
+  to{opacity:0; visibility:hidden;}
+}
+
+.music-floating{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:999;
+  display:none;
 }
 </style>
 </head>
 <body>
 
 <!-- AUDIO -->
-<button onclick="playMusic()" class="music-btn">
-  ▶️ Putar Musik
-</button>
-
-<script>
-function playMusic() {
-  const audio = document.getElementById("bgm");
-  audio.play();
-}
-</script>
+<audio id="bgm" loop>
+  <source src="assets/music/marry-you.mp3" type="audio/mpeg">
+</audio>
 
 <!-- COVER -->
-<section class="cover">
+<section class="cover" id="cover">
 
-  <!-- VIDEO BACKGROUND -->
   <iframe src="https://www.youtube.com/embed/uGUMTxZX1Os?autoplay=1&mute=1&controls=0&loop=1&playlist=uGUMTxZX1Os"></iframe>
 
   <div class="overlay">
-    <h1>The Wedding Of ASLEN</h1>
+    <h1>The Wedding Of</h1>
     <h2>Sanji & Nami</h2>
     <p>5 Oktober 2026</p>
-
     <button id="openInvite">💌 Buka Undangan</button>
-    <button id="btnMusic" style="display:none;">⏸️ Pause Musik</button>
   </div>
+
 </section>
+
+<button id="btnMusic" class="music-floating">⏸️ Pause Musik</button>
 
 <!-- MEMPELAI -->
 <section class="section">
@@ -126,10 +130,8 @@ function playMusic() {
   Jalan Tandean No 411<br>
   Dusun Gumuk Kembar RT/RW 002/001<br>
   Kel Sidorejo, Kec Umbulsari<br>
-  Jember, Jawa Timur<br>
-  100 meter ke Timur setelah GKJW Gumuk Kembar
+  Jember, Jawa Timur
   </p>
-
   <a href="https://maps.app.goo.gl/gFcsA1bctJRQyMLE7" target="_blank">
     <button>Buka Google Maps</button>
   </a>
@@ -153,23 +155,35 @@ function playMusic() {
   <button onclick="kirimRSVP()">Kirim via WhatsApp</button>
 </section>
 
-<footer>
+<footer style="padding:40px;text-align:center">
   <p>Terima kasih atas doa dan restunya</p>
   <h3>Sanji & Nami</h3>
 </footer>
 
 <script>
-/* PLAY MUSIK */
 const music = document.getElementById("bgm");
 const openBtn = document.getElementById("openInvite");
 const musicBtn = document.getElementById("btnMusic");
+const cover = document.getElementById("cover");
 
+/* OPEN INVITATION */
 openBtn.addEventListener("click", () => {
-  music.play().then(() => {
-    musicBtn.style.display = "inline-block";
-  });
+
+  music.play();
+  musicBtn.style.display = "block";
+
+  cover.classList.add("fade-out");
+
+  setTimeout(()=>{
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth"
+    });
+  },900);
+
 });
 
+/* TOGGLE MUSIC */
 musicBtn.addEventListener("click", () => {
   if (music.paused) {
     music.play();
@@ -183,17 +197,17 @@ musicBtn.addEventListener("click", () => {
 /* COUNTDOWN */
 const weddingDate = new Date("2026-10-05T11:00:00").getTime();
 
-setInterval(function(){
+setInterval(()=>{
   const now = new Date().getTime();
   const distance = weddingDate - now;
 
-  const days = Math.floor(distance / (1000*60*60*24));
-  const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const seconds = Math.floor((distance % (1000*60)) / 1000);
+  const d = Math.floor(distance / (1000*60*60*24));
+  const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const s = Math.floor((distance % (1000*60)) / 1000);
 
   document.getElementById("timer").innerHTML =
-    days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik";
+    d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik";
 },1000);
 
 /* RSVP */
