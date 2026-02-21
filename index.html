@@ -167,21 +167,31 @@ const musicBtn = document.getElementById("btnMusic");
 const cover = document.getElementById("cover");
 
 /* OPEN INVITATION */
+<script>
+const music = document.getElementById("bgm");
+const openBtn = document.getElementById("openInvite");
+const musicBtn = document.getElementById("btnMusic");
+const cover = document.getElementById("cover");
+
+/* OPEN INVITATION */
 openBtn.addEventListener("click", () => {
 
   music.play();
   musicBtn.style.display = "block";
 
-  cover.classList.add("fade-out");
+  // fade cover
+  cover.style.opacity = "0";
+  cover.style.pointerEvents = "none";
 
+  // scroll ke section pertama
   setTimeout(()=>{
-    window.scrollTo({
-      top: window.innerHeight,
+    document.querySelector(".section").scrollIntoView({
       behavior: "smooth"
     });
-  },900);
+  },400);
 
 });
+</script>
 
 /* TOGGLE MUSIC */
 musicBtn.addEventListener("click", () => {
