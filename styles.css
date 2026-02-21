@@ -60,3 +60,9 @@ button:hover {
 img {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+.cover{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  transition: opacity 0.8s ease;
+    }
